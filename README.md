@@ -1,5 +1,6 @@
 # JCoinche 
 French card game Client/Server in Java
+(realisation time = 1week | group of 2 people) 
 
 ---
 ---
