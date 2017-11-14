@@ -37,7 +37,7 @@ The minimal number of player for a Coinche game is 4.
  Erwan GUIOMAR and Tom LENORMAND.
 
 ## License
-    Copyright © 2000 Benjamin Guariglia <benjamin.guariglia@epitech.eu>
+    Copyright © 2000 Tom Lenormand <tom.lenormand@epitech.eu>
     This work is free. You can redistribute it and/or modify it under the
     terms of the Do What The Fuck You Want To Public License, Version 2,
     as published by Sam Hocevar. See the COPYING file for more details.
