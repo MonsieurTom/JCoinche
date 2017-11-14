@@ -1,0 +1,154 @@
+syntax = "proto2";
+
+option java_package = "";
+option java_outer_classname = "coincheProto";
+
+enum TRUMP
+{
+    TNONE = 0;
+    TSPADE = 1;
+    THEARTH = 2;
+    TDIAMOND = 3;
+    TCLUB = 4;
+    TALL = 5;
+}
+
+enum CARD_COLOR
+{
+    SPADE = 0;
+    HEARTH = 1;
+    DIAMOND = 2;
+    CLUB = 3;
+}
+
+enum CARD_NAME
+{
+    ACE = 0;
+    SEVEN = 1;
+    HEIGHT = 2;
+    NINE = 3;
+    TEN = 4;
+    JACK = 5;
+    QUEEN = 6;
+    KING = 7;
+}
+
+// Player CMD
+message PlayCard
+{
+    required CARD_NAME     name = 1;
+    required CARD_COLOR color = 2;
+}
+
+message Deal
+{
+    required int32  deal = 1;
+    required TRUMP  trump = 2;
+}
+
+// Msg encapsulation
+message PlayerMsg
+{
+    enum TypeMessage
+    {
+        PLAYCARD = 0;
+        DEAL = 1;
+    }
+    required TypeMessage    typeMessage = 1;
+
+    optional PlayCard       playCard = 2;
+    optional Deal           deal = 3;
+}
+
+// Server CMD
+message DealWinner
+{
+    required int32  player = 1;
+    required int32  team = 2;
+    required TRUMP  trump = 3;
+    required int32  deal = 4;
+}
+
+message PlayedCard
+{
+    required CARD_NAME  name = 1;
+    required CARD_COLOR color = 2;
+    required int32      player = 3;
+    required int32      team = 4;
+}
+
+message ActionValidation
+{
+    required bool       accepted = 1;
+}
+
+message GameWinner
+{
+    required int32      team1Score = 1;
+    required int32      team2Score = 2;
+    required int32      dealerTeam = 3;
+    required bool       winDeal = 4;
+}
+
+message DrawCard
+{
+    required CARD_NAME     name = 1;
+    required CARD_COLOR color = 2;
+}
+
+message StackWinner
+{
+    required int32  team = 1;
+    required int32  player = 2;
+    required int32  score = 3;
+}
+
+message PlayerDealed
+{
+    required int32  player = 1;
+    required int32  team = 2;
+    required int32  deal = 3;
+    required TRUMP  trump = 4;
+}
+
+message PlayerState
+{
+    enum State
+    {
+        WAITINGGAME = 0;
+        PLAYING = 1;
+        YOURTURN = 2;
+        LEAVE = 3;
+        DEAL = 4;
+    }
+    
+    required State  state = 1;
+    required int32  team = 2;
+    required int32  Player = 3;
+}
+
+// Msg encapsulation
+message ServerMsg
+{
+    enum TypeMessage
+    {
+        DEALWINNER = 0;
+        PLAYEDCARD = 1;
+        ACTIONVALIDATION = 2;
+        WINNER = 3;
+        DRAWCARD = 4;
+        STACKWINNER = 5;
+        PLAYERSTATE = 6;
+        PLAYERDEALED = 7;
+    }
+    required TypeMessage        typeMessage = 1;
+
+    optional DealWinner         dealWinner = 2;
+    optional PlayedCard         playedCard = 3;
+    optional ActionValidation   actionValidation = 4;
+    optional GameWinner         winner = 5;
+    optional DrawCard           drawCard = 6;
+    optional StackWinner        stackWinner = 7;
+    optional PlayerState        playerState = 8;
+    optional PlayerDealed       playerDealed = 9;
+}
